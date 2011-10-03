@@ -1,0 +1,26 @@
+<nav class="pager separator">
+    {% if pagination.hasPages() %}
+    <span>Page {{ pagination.getCurrentPage() }} of {{ pagination.getLastPage() }}</span>
+    <div class="pages">
+
+        <span class="prev">
+            {% if pagination.hasPreviousPage() %}
+                <a href="{{ path('news_list', {'page': pagination.getPreviousPage()}) }}">{{ pagination.getPreviousPage() }}</a>
+            {% else %}
+                <span>{{ pagination.getCurrentPage() }}</span>
+            {% endif %}
+        </span>
+
+
+        <span class="next">
+            {% if pagination.hasNextPage() %}
+                <a href="{{ path('news_list', {'page': pagination.getNextPage()}) }}">{{ pagination.getNextPage() }}</a>
+            {% else %}
+                <span>{{ pagination.getLastPage() }}</span>
+            {% endif %}
+        </span>
+    </div>
+    {% else %}
+    <span>Only 1 page</span>
+    {% endif %}
+</nav>

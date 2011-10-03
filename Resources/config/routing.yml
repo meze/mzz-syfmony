@@ -1,0 +1,9 @@
+welcome:
+    pattern:  /welcome
+    defaults: { _controller: mzz.authentication.controller.user:welcomeAction }
+login:
+    pattern:  /login
+    defaults: { _controller: mzz.authentication.controller.user:loginAction }
+logout:
+    pattern:  /logout
+    defaults: { _controller: mzz.authentication.controller.user:logoutAction }

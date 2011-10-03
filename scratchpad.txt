@@ -1,0 +1,12 @@
+- set credentials after usernamepassword authentication
+- rememberMeProvider - by a cookie
+- groups?
+
+how remember me works:
+
+
+	user has a cookie: hash, series
+        user is logged in by remember me token
+        when logged in - give new hash
+        when logged in via form  - give hash and series
+        when logged out - delete remember me token from cookies and db

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+   <parameters>
+        <parameter key="mzz.jip.provider.class">Mzz\MzzBundle\Jip\MenuProvider</parameter>
+        <parameter key="mzz.jip.repository.class">Mzz\MzzBundle\Jip\Repository\YamlItemRepository</parameter>
+    </parameters>
+
+    <services>
+        <service id="mzz.jip.provider" class="%mzz.jip.provider.class%">
+            <argument type="service" id="router" />
+            <argument type="service" id="mzz.jip.repository" />
+        </service>
+
+        <service id="mzz.jip.repository" class="%mzz.jip.repository.class%">
+            <argument>%kernel.root_dir%/config/jip.yml</argument>
+        </service>
+    </services>
+
+</container>

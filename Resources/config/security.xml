@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="mzz.acl.specification_factory.class">Mzz\MzzBundle\Acl\SpecificationFactory</parameter>
+        <parameter key="mzz.acl.config.class">Mzz\MzzBundle\Acl\Loaders\Config</parameter>
+        <parameter key="mzz.acl.manager.class">Mzz\MzzBundle\Acl\AclManager</parameter>
+        <parameter key="mzz.acl.access_denied_controller_resolver.class">Mzz\MzzBundle\Acl\AccessDeniedControllerResolver</parameter>
+
+        <parameter key="mzz.acl.default_specification">Mzz\MzzBundle\Acl\UserHasRoleSpecification</parameter>
+
+        <parameter key="mzz.authentication.user">Mzz\MzzBundle\Authentication\User</parameter>
+        <parameter key="mzz.authentication.providers.dao.class">Mzz\MzzBundle\Authentication\Providers\DaoAuthenticationProvider</parameter>
+        <parameter key="mzz.authentication.providers.rememberme.class">Mzz\MzzBundle\Authentication\Providers\RememberMeAuthenticationProvider</parameter>
+        <parameter key="mzz.authentication.providers.preauthenticated.class">Mzz\MzzBundle\Authentication\Providers\PreAuthenticatedAuthenticationProvider</parameter>
+        <parameter key="mzz.authentication.providers.anonymous.class">Mzz\MzzBundle\Authentication\Providers\AnonymousAuthenticationProvider</parameter>
+
+        <parameter key="mzz.authentication.password_encoder.class">Mzz\MzzBundle\Authentication\Encoders\Sha1PasswordEncoder</parameter>
+        <parameter key="mzz.authentication_provider_manager.class">Mzz\MzzBundle\Authentication\Providers\AuthenticationProviderManager</parameter>
+        <parameter key="mzz.authentication.security_context.class">Mzz\MzzBundle\Authentication\SecurityContext</parameter>
+
+        <parameter key="mzz.authentication.username_password_authentication.class">Mzz\MzzBundle\Authentication\UsernamePasswordAuthentication</parameter>
+        <parameter key="mzz.authentication.preauthenticated.class">Mzz\MzzBundle\Authentication\PreAuthenticatedAuthentication</parameter>
+        <parameter key="mzz.authentication.rememberme.class">Mzz\MzzBundle\Authentication\RememberMeAuthentication</parameter>
+        <parameter key="mzz.authentication.anonymous.class">Mzz\MzzBundle\Authentication\AnonymousAuthentication</parameter>
+        <parameter key="mzz.authentication.anonymous.username"></parameter>
+        <parameter key="mzz.authentication.anonymous.default_authority">ANONYMOUS</parameter>
+
+        <parameter key="data_collector.security.class">Mzz\MzzBundle\HttpKernel\DataCollector\SecurityDataCollector</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="data_collector.security" class="%data_collector.security.class%" public="false">
+            <tag name="data_collector" template="MzzBundle:Collector:security" id="security" />
+            <argument type="service" id="mzz.authentication.security_context" on-invalid="ignore" />
+        </service>
+
+        <service id="mzz.acl.config" class="%mzz.acl.config.class%" factory-class="%mzz.acl.config.class%" factory-method="createFromXml">
+            <argument>%kernel.root_dir%/config/acl.xml</argument>
+        </service>
+
+        <service id="mzz.acl.specification_factory" class="%mzz.acl.specification_factory.class%">
+            <argument type="service" id="service_container" />
+        </service>
+
+        <service id="mzz.acl.manager" class="%mzz.acl.manager.class%">
+        </service>
+
+        <service id="mzz.acl.access_denied_controller_resolver" class="%mzz.acl.access_denied_controller_resolver.class%">
+            <call method="setControllerResolver">
+                <argument type="service" id="controller_resolver" />
+            </call>
+            <call method="setControllerServiceId">
+                <argument>mzz.authentication.controller.user</argument>
+            </call>
+            <call method="setControllerMethod">
+                <argument>%mzz.authentication.controller.user.denied.action%</argument>
+            </call>
+        </service>
+
+        <service id="mzz.user_repository" class="%mzz.user_repository.class%">
+            <call method="setUserClassName">
+                <argument type="string">%mzz.authentication.user%</argument>
+            </call>
+        </service>
+
+        <service id="mzz.authentication.password_encoder" class="%mzz.authentication.password_encoder.class%">
+        </service>
+
+        <service id="mzz.authentication_provider_manager" class="%mzz.authentication_provider_manager.class%">
+            <call method="setProviders">
+                <argument type="collection">
+                    <argument type="service" id="mzz.authentication.providers.preauthenticated" />
+                    <argument type="service" id="mzz.authentication.providers.dao" />
+                    <argument type="service" id="mzz.authentication.providers.rememberme" />
+                    <argument type="service" id="mzz.authentication.providers.anonymous" />
+                </argument>
+            </call>
+        </service>
+
+        <service id="mzz.authentication.providers.preauthenticated" class="%mzz.authentication.providers.preauthenticated.class%">
+            <call method="setUserRepository">
+                <argument type="service" id="mzz.user_repository"/>
+            </call>
+        </service>
+
+        <service id="mzz.authentication.anonymous" class="%mzz.authentication.anonymous.class%">
+            <argument>%mzz.authentication.anonymous.username%</argument>
+            <argument></argument>
+            <argument type="collection">
+                <argument>%mzz.authentication.anonymous.default_authority%</argument>
+            </argument>
+        </service>
+
+        <service id="mzz.authentication.providers.dao" class="%mzz.authentication.providers.dao.class%">
+            <argument type="service" id="mzz.authentication.password_encoder"/>
+        </service>
+
+        <service id="mzz.authentication.providers.rememberme" class="%mzz.authentication.providers.rememberme.class%">
+            <call method="setUserRepository">
+                <argument type="service" id="mzz.user_repository"/>
+            </call>
+        </service>
+
+        <service id="mzz.authentication.security_context" class="%mzz.authentication.security_context.class%">
+        </service>
+
+        <service id="mzz.authentication.providers.anonymous" class="%mzz.authentication.providers.anonymous.class%">
+        </service>
+    </services>
+
+</container>

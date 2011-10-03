@@ -1,0 +1,25 @@
+news:
+  edit:
+    route: news_edit
+    title: "Edit"
+    icon: "edit.gif"
+  delete:
+    route: news_delete
+    title: "Delete news"
+    icon: "delete.gif"
+    handler: "Application.news.remove"
+
+page:
+  edit:
+    route: page_edit
+    title: "Edit"
+    icon: "edit.gif"
+  create:
+    route: page_create
+    title: "Edit"
+    icon: "edit.gif"
+  delete:
+    route: page_delete
+    title: "Delete"
+    icon: "delete.gif"
+    handler: "Application.page.remove"

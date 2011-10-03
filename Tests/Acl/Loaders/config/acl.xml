@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<acl xmlns="http://www.mzz.ru/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.mzz.ru/schema/dic/services http://www.mzz.ru/schema/dic/services/services-1.0.xsd">
+
+    <actions>
+        <action controller="testController" method="index" roles="USER, ADMIN" />
+        <action controller="testController" method="admin" roles="ADMIN" />
+        <action controller="welcomeController" method="index" roles="ANONYMOUS" />
+        <action controller="welcomeController" method="goodbye" roles="ADMIN" />
+    </actions>
+</acl>
