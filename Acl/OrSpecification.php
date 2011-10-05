@@ -2,7 +2,6 @@
 
 namespace Mzz\MzzBundle\Acl;
 use Mzz\MzzBundle\Authentication\Authentication;
-use Mgp\AppBundle\Acl\CompositeSpecification;
 
 class OrSpecification extends CompositeSpecification
 {

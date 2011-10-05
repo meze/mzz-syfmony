@@ -9,16 +9,24 @@ use Mzz\MzzBundle\Templating\ViewTemplateResolver;
 
 class Controller extends ContainerAware
 {
-    protected $request;
+    private $request;
     protected $templateExtension = "html.twig";
 
     /**
      *
      * @param \Mzz\MzzBundle\Request\Request $request
      */
-    public function __construct($request)
+    public function __construct($request = null)
     {
         $this->request = $request;
+    }
+
+    public function getRequest()
+    {
+        if (!empty($this->request)) {
+            return $this->request;
+        }
+        return $this->get('request');
     }
 
     /**
@@ -168,7 +176,7 @@ class Controller extends ContainerAware
     public function view(array $parameters = array(), Response $response = null, $extension = '')
     {
         $extension = !empty($extension) ? $extension : $this->templateExtension;
-        $view = ViewTemplateResolver::resolve($this->request->get('_controller'), get_called_class());
+        $view = ViewTemplateResolver::resolve($this->getRequest()->get('_controller'), get_called_class());
         return $this->render($view . '.' . $extension, $parameters, $response);
     }
 
@@ -182,10 +190,10 @@ class Controller extends ContainerAware
      */
     public function isValidForm($form, $post_only = true)
     {
-        if (($post_only && !$this->request->isPost()) || !$post_only)
+        if (($post_only && !$this->getRequest()->isPost()) || !$post_only)
             return;
 
-        $form->bindRequest($this->request);
+        $form->bindRequest($this->getRequest());
         return $form->isValid();
     }
 }

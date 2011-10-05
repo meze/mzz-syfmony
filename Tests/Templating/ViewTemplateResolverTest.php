@@ -15,7 +15,7 @@ class ViewTemplateResolverTest extends \PHPUnit_Framework_TestCase
         $controller = "tasks.team_controller:createAction";
         $class = "Application\TasksBundle\Controller\TeamController";
 
-        $this->assertEquals("TasksBundle:Team:create", ViewTemplateResolver::resolve($controller, $class));
+        $this->assertEquals("ApplicationTasksBundle:Team:create", ViewTemplateResolver::resolve($controller, $class));
     }
 
 }

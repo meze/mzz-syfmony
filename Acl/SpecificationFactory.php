@@ -19,7 +19,7 @@ class SpecificationFactory
         $config = $this->container->get('mzz.acl.config');
         $spec = null;
         switch ($class) {
-            case "Mzz\MzzBundle\Acl\UserHasRoleSpecification":
+            case "Mgp\AppBundle\Acl\UserHasRoleSpecification":
                 $roles = $config->getOptionForControllerAndMethod('roles', $env->getClass(), $env->getMethod());
                 $spec = new $class($roles);
                 break;
