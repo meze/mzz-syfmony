@@ -12,7 +12,7 @@ class JsonResponseMessageTest extends \PHPUnit_Framework_TestCase
     {
         $flash = new JsonResponseMessage();
 
-        $this->assertEquals($flash->toJson(), '{"status":"ok","message":""}');
+        $this->assertEquals($flash->toJson(), '{"success":true,"data":""}');
     }
 
     /**
@@ -21,10 +21,10 @@ class JsonResponseMessageTest extends \PHPUnit_Framework_TestCase
     public function replyShouldContainStatusAndMessage()
     {
         $flash = new JsonResponseMessage("Something is wrong", JsonResponseMessage::ERROR);
-        $this->assertEquals($flash->toJson(), '{"status":"error","message":"Something is wrong"}');
+        $this->assertEquals($flash->toJson(), '{"success":false,"errors":"Something is wrong"}');
 
         $flash = new JsonResponseMessage("Everything is ok", JsonResponseMessage::OK);
-        $this->assertEquals($flash->toJson(), '{"status":"ok","message":"Everything is ok"}');
+        $this->assertEquals($flash->toJson(), '{"success":true,"data":"Everything is ok"}');
     }
 
 }

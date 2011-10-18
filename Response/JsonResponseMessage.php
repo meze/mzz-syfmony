@@ -4,24 +4,28 @@ namespace Mzz\MzzBundle\Response;
 
 class JsonResponseMessage
 {
-    const ERROR = "error";
-    const OK = "ok";
+    const ERROR = false;
+    const OK = true;
 
-    private $message;
-    private $status;
+    private $data;
+    private $success;
 
-    public function __construct($message = '', $status = self::OK)
+    public function __construct($data = '', $success = self::OK)
     {
-        $this->message = $message;
-        $this->status = $status;
+        $this->data = $data;
+        $this->success = $success;
     }
 
     public function toJson()
     {
-        return \json_encode(array(
-            'status' => $this->status,
-            'message' => $this->message
-        ));
+        $response = array('success' => $this->success);
+
+        if ($this->success == self::OK) {
+            $response['data'] = $this->data;
+        } else {
+            $response['errors'] = $this->data;
+        }
+        return \json_encode($response);
     }
 
     public function __toString()
