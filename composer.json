@@ -1,0 +1,24 @@
+{
+    "name": "mzz/mzz-bundle",
+    "type": "symfony-bundle",
+    "description": "MZZ Bundle",
+    "keywords": ["Tools for symfony 2.x."],
+    "homepage": "http://meze.github.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeny Z.",
+            "email": "mz.evgeny@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "2.0.*"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+    },
+    "target-dir": "Mzz/MzzBundle"
+}
