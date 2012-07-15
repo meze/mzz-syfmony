@@ -1,11 +1,11 @@
 <?php
 
 namespace Mzz\MzzBundle\Acl;
-use Mzz\MzzBundle\Authentication\Authentication;
+use FOS\UserBundle\Model\UserInterface;
 
 interface ISpecification
 {
-    function isSatisfiedBy(Authentication $candidate);
+    function isSatisfiedBy(UserInterface $candidate);
     function logicalAnd(ISpecification $other);
     function logicalOr(ISpecification $other);
     function logicalNot();

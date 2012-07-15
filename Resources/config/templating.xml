@@ -5,18 +5,11 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
    <parameters>
-        <parameter key="templating.helper.security.class">Mzz\MzzBundle\Templating\Helper\SecurityHelper</parameter>
         <parameter key="templating.helper.jip.class">Mzz\MzzBundle\Templating\Helper\JipHelper</parameter>
-        <parameter key="templating.helper.security_factory.class">Mzz\MzzBundle\Templating\Helper\SecurityHelperFactory</parameter>
         <parameter key="templating.helper.pagination.class">Mzz\MzzBundle\Templating\Helper\PaginationHelper</parameter>
     </parameters>
 
     <services>
-        <service id="templating.helper.security" class="%templating.helper.security_factory.class%" factory-class="%templating.helper.security_factory.class%" factory-method="getInstance">
-            <tag name="templating.helper" alias="security" />
-            <argument>%templating.helper.security.class%</argument>
-            <argument type="service" id="mzz.authentication.security_context" />
-        </service>
         <service id="templating.helper.jip" class="%templating.helper.jip.class%">
             <tag name="templating.helper" alias="jip" />
             <argument type="service" id="mzz.jip.provider" />
@@ -24,11 +17,6 @@
         <service id="templating.helper.pagination" class="%templating.helper.pagination.class%">
             <tag name="templating.helper" alias="pagination" />
             <argument type="service" id="templating.engine.php" />
-        </service>
-
-        <service id="twig.extension.security" class="Mzz\MzzBundle\Templating\Extension\SecurityExtension" public="false">
-            <tag name="twig.extension" />
-            <argument type="service" id="mzz.authentication.security_context" on-invalid="ignore" />
         </service>
 
         <service id="twig.extension.jip" class="Mzz\MzzBundle\Templating\Extension\JipExtension" public="false">

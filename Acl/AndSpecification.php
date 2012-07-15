@@ -1,7 +1,7 @@
 <?php
 
 namespace Mzz\MzzBundle\Acl;
-use Mzz\MzzBundle\Authentication\Authentication;
+use FOS\UserBundle\Model\UserInterface;
 
 class AndSpecification extends CompositeSpecification
 {
@@ -14,7 +14,7 @@ class AndSpecification extends CompositeSpecification
         $this->rightSpecification = $rightSpecification;
     }
 
-    public function isSatisfiedBy(Authentication $candidate)
+    public function isSatisfiedBy(UserInterface $candidate)
     {
         return $this->leftSpecification->isSatisfiedBy($candidate) && $this->rightSpecification->isSatisfiedBy($candidate);
     }

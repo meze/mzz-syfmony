@@ -1,0 +1,554 @@
+.mzz-jip-topLeft,    .mzz-jip-topRight,
+.mzz-jip-bottomLeft, .mzz-jip-bottomRight {
+    background: transparent url('/bundles/mzz/images/jip/shadows-corners.png') no-repeat top left scroll;
+    position: absolute;
+}
+
+.mzz-jip-top, .mzz-jip-bottom {
+    background: transparent url('/bundles/mzz/images/jip/shadows-x.png') repeat-x top left scroll;
+    position: absolute;
+}
+
+.mzz-jip-left, .mzz-jip-right {
+    background: transparent url('/bundles/mzz/images/jip/shadows-y.png') repeat-y top left scroll;
+    position: absolute;
+}
+
+/**
+ * Style for content-locker
+*/
+.mzz-content-locker {
+    background: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    z-index: 901;
+    width: 100%;
+}
+
+/**
+ * Styles for jip-menu
+*/
+
+img.jip {
+    cursor: pointer;
+}
+
+.jip-button {
+    background: transparent url('/bundles/mzz/images/jip/common.png') no-repeat 0px -68px scroll;
+    width: 20px;
+    height: 10px;
+}
+
+.jip-button.active {
+    background-position: 0px -80px;
+}
+
+div.mzz-jip-menu {
+    background: #ffffff;
+    display: none;
+    left: 658px;
+    margin-left: 1px;
+    margin-top: -20px;
+    position: absolute;
+    top: 163px;
+    width: auto;
+    z-index: 9999;
+}
+
+div.mzz-jip-menu .mzz-jip-topLeft,    div.mzz-jip-menu .mzz-jip-topRight,
+div.mzz-jip-menu .mzz-jip-bottomLeft, div.mzz-jip-menu .mzz-jip-bottomRight {
+    width: 40px;
+    height: 25px;
+}
+
+div.mzz-jip-menu .mzz-jip-topLeft, div.mzz-jip-menu .mzz-jip-topRight {
+    top: -16px;
+}
+
+div.mzz-jip-menu .mzz-jip-topLeft {
+    background-position: 6px 4px;
+    left: -20px;
+}
+
+div.mzz-jip-menu .mzz-jip-topRight {
+    background-position: -6px -48px;
+    right: -20px;
+}
+
+div.mzz-jip-menu .mzz-jip-bottomLeft, div.mzz-jip-menu .mzz-jip-bottomRight {
+    bottom: -20px;
+}
+
+div.mzz-jip-menu .mzz-jip-bottomLeft {
+    background-position: 6px -26px;
+    left: -20px;
+}
+
+div.mzz-jip-menu .mzz-jip-bottomRight {
+    background-position: -6px -78px;
+    right: -20px;
+}
+
+div.mzz-jip-menu .mzz-jip-top, div.mzz-jip-menu .mzz-jip-bottom {
+    left: 20px;
+    right: 20px;
+}
+
+div.mzz-jip-menu .mzz-jip-top {
+    height: 25px;
+    top: -20px;
+}
+
+div.mzz-jip-menu .mzz-jip-bottom {
+    background-position: 0px -26px;
+    height: 25px;
+    bottom: -21px;
+}
+
+div.mzz-jip-menu .mzz-jip-left, div.mzz-jip-menu .mzz-jip-right {
+    bottom: 5px;
+    top: 9px;
+    width: 20px;
+}
+
+div.mzz-jip-menu .mzz-jip-left {
+    left: -20px;
+}
+
+div.mzz-jip-menu .mzz-jip-right {
+    background-position: -30px 0px;
+    right: -20px;
+}
+
+div.mzz-jip-menu ul, div.mzz-jip-menu li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+div.mzz-jip-menu li {
+    color: #000000;
+    margin-bottom: 1px;
+    margin-top: 2px;
+    height: 19px;
+    font-size: 12px;
+    line-height: 16px;
+    padding: 2px 0 0 0;
+}
+
+div.mzz-jip-menu li:hover, div.mzz-jip-menu li.active {
+    background: transparent url('/bundles/mzz/images/jip/common.png') repeat-x 0 0 scroll;
+    color: #ffffff;
+}
+
+div.mzz-jip-menu a {
+    text-decoration: none;
+    color: inherit;
+    font: inherit;
+    display:block;
+    padding: 0 10px;
+}
+
+div.mzz-jip-menu a.withlang {
+    background: url("/bundles/mzz/images/jip/common.png") no-repeat scroll right -99px transparent;
+    padding-right: 16px;
+}
+
+div.mzz-jip-menu li.active a.withlang {
+    background-position: right -116px;
+}
+
+div.mzz-jip-menu a img.mzz-icon {
+    vertical-align: top;
+    margin-right: 10px;
+}
+
+div.mzz-jip-menu-lang a img.mzz-icon {
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/**
+ * Style for mzz-window holder (not only jipWindow)
+*/
+.mzz-window-holder {
+    display: none;
+}
+
+img.mzz-window-button {
+    cursor: pointer;
+}
+
+/**
+ * Jip-window styles
+*/
+.mzz-ie-visibility { /* pseudo-class for ie 'hidden' selects */
+                     visibility: hidden;
+}
+
+.mzz-jip-window {
+    font-family: "Lucida Grande","Lucida Sans Unicode", Verdana, Helvetica, Arial, sans-serif;
+
+    color: #000000;
+    font-size: 12px;
+    font-weight: normal;
+    text-transform: none;
+    position: fixed;
+    left: 50%;
+    margin-left: -375px;
+    width: 750px;
+    z-index: 902;
+    display: none;
+
+    /*border: 1px solid #595a5b;*/
+    border: 3px solid #585859;
+    outline: 0;
+    /** css3 **/
+    border-radius: 5px;
+    box-shadow: 0 0 10px #111111;
+    -moz-border-radius: 5px;
+    -moz-box-shadow: 0 0 10px #111111;
+    -webkit-border-radius: 5px;
+    -webkit-box-shadow: 0 0 10px #111111;
+    -khtml-border-radius: 5px;
+    -khtml-box-shadow: 0 0 10px #111111;
+}
+
+.mzz-jip-window a {
+    color: #1C4FAD;
+    text-decoration:none;
+}
+
+.mzz-jip-window a:hover, .mzz-jip-window a:active {
+    text-decoration:underline;
+}
+
+.mzz-jip-window a.mzz-jip-close {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    color: #DDD;
+    text-decoration: none;
+    text-shadow:0 1px 0 rgba(250, 250, 250, 0.5);
+}
+
+.mzz-jip-window a.mzz-jip-close:hover {
+    color: #FFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+div.mzz-jip-window img.mzz-jip-gradient {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 0;
+}
+
+.mzz-jip-wrapper {
+    /*margin: 34px 0px 20px 0px;*/
+    min-height: 70px;
+    padding: 1px;
+    position: relative;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-bottom: 1px solid #b8b8b8;
+}
+
+.mzz-jip-title {
+    background: #EAF2F5;
+    border-bottom: 3px solid #D8E5EB;
+    line-height:34px;
+    height: 34px;
+    overflow: hidden;
+
+
+    /** css3 **/
+    /*border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 5px 5px 0 0;
+    -khtml-border-radius: 5px 5px 0 0;*/
+}
+
+.mzz-jip-title span {
+    line-height: 34px;
+    font-size: 15px;
+    color: #2C4865;
+    font-weight: bold;
+    font-family: "Trebuchet MS", "Liberation Sans", "DejaVu Sans", sans-serif;
+    margin-left: 10px;
+    text-shadow: 0 1px 0 rgba(250, 250, 250, 0.5);
+}
+
+.mzz-jip-footer {
+    padding: 1px 3px 7px;
+    background: #585859;
+    /*border-top: 1px solid #f7f8f9;*/
+    overflow: hidden;
+
+    /** css3 **/
+    /*border-radius:  0 0 5px 5px;
+    -moz-border-radius:  0 0 5px 5px;
+    -webkit-border-radius:  0 0 5px 5px;
+    -khtml-border-radius:  0 0 5px 5px;*/
+}
+
+.mzz-jip-footer, .mzz-jip-footer span {
+    color: #888888;
+    font-size: 11px;
+}
+
+
+.mzz-jip-footer .refresh {
+    background: transparent url('/bundles/mzz/images/jip/common.png') no-repeat scroll -21px -66px;
+    vertical-align:bottom;
+    width: 14px;
+    height: 15px;
+    cursor:pointer;
+}
+
+.mzz-jip-footer .refresh:hover {
+    background-position: -21px -81px
+
+}
+
+.mzz-jip-content {
+    background: #ffffff;
+    padding: 0;
+}
+
+/**
+ * Style for jipWindow forms
+*/
+
+.mzz-jip-window form {
+    margin: 0px;
+    padding: 0px;
+}
+
+.mzz-jip-window .label, .mzz-jip-window .label label {
+    color: #666666;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.mzz-jip-window form .field:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.mzz-jip-window form .field {
+    display: inline-block;
+}
+
+* html .mzz-jip-window form .field {
+    height: 1%;
+}
+
+.mzz-jip-window form .field {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.mzz-jip-window form div.label {
+    float: left;
+    width: 150px;
+}
+
+.mzz-jip-window form div.text {
+    margin-left: 155px;
+    padding: 5px 0 0 0;
+}
+
+.mzz-jip-window form .caption,
+.mzz-jip-window form .caption * {
+    font-size: 11px;
+}
+
+.mzz-jip-window form .caption {
+    display: block;
+    color:#888888;
+
+}
+
+.mzz-jip-window form .label .caption {
+    padding-left: 5px;
+}
+
+.mzz-jip-window form label {
+    display: inline-block;
+    font-size: 12px;
+}
+
+.mzz-jip-window form span.error {
+    display: none;
+}
+
+.mzz-jip-window form .error span.error {
+    display: block;
+}
+
+.mzz-jip-window form .error label,
+.mzz-jip-window form span.error {
+    color: #de4444;
+}
+
+.mzz-jip-window form textarea,
+.mzz-jip-window form input[type=text] {
+    border-color: #8d8e8d #e0e1e0 #e0e1e0 #8d8e8d;
+    border-style:solid;
+    border-width: 1px;
+    color: #817c7c;
+    padding: 3px;
+    margin-top: -2px;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+}
+
+.mzz-jip-window form .required textarea,
+.mzz-jip-window form .required input[type=text] {
+    border-color: #f5dc63 #f6e9e9 #f6e9e9 #f5dc63;
+    background-color: #ffffcf;
+}
+
+.mzz-jip-window form .error textarea,
+.mzz-jip-window form .error input[type=text] {
+    border-color: #FF9F9F #f6e9e9 #f6e9e9 #FF9F9F;
+    background-color: #fcecec;
+}
+
+.mzz-jip-window form textarea:focus,
+.mzz-jip-window form input[type=text]:focus {
+    border-left: 1px solid black;
+    border-top: 1px solid black;
+    color: #000000;
+}
+
+.mzz-jip-window form input[type="reset"],
+.mzz-jip-window form input[type="button"] {
+    background: url("/bundles/mzz/images/jip/bg-button.png") repeat-x scroll 0 0 transparent;
+    border:1px solid #c8c7c7;
+    color:#727070;
+    cursor:default;
+    font-size:13px;
+    padding:3px 12px;
+    text-align:center;
+    width: auto;
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -khtml-border-radius: 3px;
+}
+
+.mzz-jip-window form input[type="reset"]:active,
+.mzz-jip-window form input[type="button"]:active {
+    background-position: 0px -48px;
+    border-color: #000000;
+    color: #4c4545;
+}
+
+.mzz-jip-window form input[type="reset"]:hover,
+.mzz-jip-window form input[type="button"]:hover {
+    background-position: 0px -24px;
+    border-color: #000000;
+    color: #4c4545;
+}
+
+.mzz-jip-window form div.buttons {
+    padding-top: 5px;
+    border-top: 1px solid #d3d3d3;
+    text-align: right;
+}
+
+/* @todo: clean-up this shit */
+div.jipSuccess {
+    background-color: #EEF8E7;
+    padding: 2px;
+    text-align: center;
+    width: 160px;
+    border: 1px solid #C9E9B1;
+    color: green;
+    font-weight: bold;
+}
+
+.jipLoadJs {
+    font-size: 80%;
+    color: #555;
+}
+
+div#jipLoad {
+    font-family: Tahoma, Verdana, Arial;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+    line-height: 150%;
+}
+
+div#jipLoad a {
+    font-size: 90%;
+}
+
+div#jipLoad img {
+    margin-bottom: 10px;
+}
+
+div.confirm {
+    width:90%;
+    font-size: 110%;
+    text-align: center;
+    line-height: 150%;
+    margin: 5px 0;
+    margin-bottom: 20px;
+}
+
+div.confirmImg {
+    width: 20%;
+    float: left;
+}
+
+div.confirmMsg {
+    width: 80%;
+    float: right;
+    padding-top: 5px;
+}
+
+div.confirm span {
+    margin-left: 40px;
+}
+
+div.confirm img {
+    float: right;
+}
+
+.jipAjaxLoading {
+    padding: 5px;
+    border: 1px solid #F1DC92;
+    background-color: #FFF9D5;
+    color: #004000;
+    width: 130px;
+    font-size: 90%;
+}
+
+.jipAjaxLoadingError {
+    padding: 5px;
+    border: 1px solid #F29191;
+    background-color: #FFD5D5;
+    color: #800000;
+    width: 130px;
+    font-size: 90%;
+}
+
+.jip-content {
+    padding: 0 8px;
+}

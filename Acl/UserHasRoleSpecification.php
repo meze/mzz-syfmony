@@ -1,7 +1,7 @@
 <?php
 
 namespace Mzz\MzzBundle\Acl;
-use Mzz\MzzBundle\Authentication\Authentication;
+use FOS\UserBundle\Model\UserInterface;
 
 class UserHasRoleSpecification extends CompositeSpecification
 {
@@ -15,9 +15,9 @@ class UserHasRoleSpecification extends CompositeSpecification
         $this->roles = $roles;
     }
 
-    public function isSatisfiedBy(Authentication $candidate)
+    public function isSatisfiedBy(UserInterface $candidate)
     {
-        return $this->isAllowedForAll() || $this->hasAtLeastOneOfRequiredRole($candidate->getAuthorities());
+        return $this->isAllowedForAll() || $this->hasAtLeastOneOfRequiredRole($candidate->getRoles());
     }
 
     private function hasAtLeastOneOfRequiredRole(array $authorities)

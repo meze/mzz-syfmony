@@ -16,10 +16,13 @@ class SpecificationFactory
 
     public function create($class, AuthenticationEnvironment $env)
     {
+        if ($class === SpecificationTypes::ROLE_BASED) {
+            $class = "Mzz\MzzBundle\Acl\UserHasRoleSpecification";
+        }
         $config = $this->container->get('mzz.acl.config');
         $spec = null;
         switch ($class) {
-            case "Mgp\AppBundle\Acl\UserHasRoleSpecification":
+            case "Mzz\MzzBundle\Acl\UserHasRoleSpecification":
                 $roles = $config->getOptionForControllerAndMethod('roles', $env->getClass(), $env->getMethod());
                 $spec = new $class($roles);
                 break;

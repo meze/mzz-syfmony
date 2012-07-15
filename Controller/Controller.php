@@ -6,28 +6,13 @@ use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Mzz\MzzBundle\Response\JsonResponseMessage;
 use Mzz\MzzBundle\Templating\ViewTemplateResolver;
+use Mzz\MzzBundle\Orm\Pagination;
+USE Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\Request;
 
 class Controller extends ContainerAware
 {
-    private $request;
     protected $templateExtension = "html.twig";
-
-    /**
-     *
-     * @param \Mzz\MzzBundle\Request\Request $request
-     */
-    public function __construct($request = null)
-    {
-        $this->request = $request;
-    }
-
-    public function getRequest()
-    {
-        if (!empty($this->request)) {
-            return $this->request;
-        }
-        return $this->get('request');
-    }
 
     /**
      * Creates a Response instance that closes the current JIP window
@@ -176,7 +161,7 @@ class Controller extends ContainerAware
     public function view(array $parameters = array(), Response $response = null, $extension = '')
     {
         $extension = !empty($extension) ? $extension : $this->templateExtension;
-        $view = ViewTemplateResolver::resolve($this->getRequest()->get('_controller'), get_called_class());
+        $view = ViewTemplateResolver::resolve($this->get('request')->get('_controller'), get_called_class());
         return $this->render($view . '.' . $extension, $parameters, $response);
     }
 
@@ -190,10 +175,100 @@ class Controller extends ContainerAware
      */
     public function isValidForm($form, $post_only = true)
     {
-        if (($post_only && !$this->getRequest()->isPost()) || !$post_only)
+        if (($post_only && $this->get('request')->getMethod() !== 'POST') || !$post_only)
             return;
 
-        $form->bindRequest($this->getRequest());
+        $form->bindRequest($this->get('request'));
         return $form->isValid();
+    }
+
+    /**
+     * Creates and returns a Form instance from the type of the form.
+     *
+     * @param string|FormTypeInterface $type    The built type of the form
+     * @param mixed $data                       The initial data for the form
+     * @param array $options                    Options for the form
+     *
+     * @return Form
+     */
+    public function createForm($type, $data = null, array $options = array())
+    {
+        return $this->container->get('form.factory')->create($type, $data, $options);
+    }
+
+    /**
+     * Creates and returns a form builder instance
+     *
+     * @param mixed $data               The initial data for the form
+     * @param array $options            Options for the form
+     *
+     * @return FormBuilder
+     */
+    public function createFormBuilder($data = null, array $options = array())
+    {
+        return $this->container->get('form.factory')->createBuilder('form', $data, $options);
+    }
+
+    /**
+     * Shortcut to return the request service.
+     *
+     * @return Request
+     */
+    public function getRequest()
+    {
+        return $this->container->get('request');
+    }
+
+    /**
+     * Shortcut to return the Doctrine Registry service.
+     *
+     * @return Registry
+     *
+     * @throws \LogicException If DoctrineBundle is not available
+     */
+    public function getDoctrine()
+    {
+        if (!$this->container->has('doctrine')) {
+            throw new \LogicException('The DoctrineBundle is not installed in your application.');
+        }
+
+        return $this->container->get('doctrine');
+    }
+
+    /**
+     * Returns true if the service id is defined.
+     *
+     * @param  string  $id The service id
+     *
+     * @return Boolean true if the service id is defined, false otherwise
+     */
+    public function has($id)
+    {
+        return $this->container->has($id);
+    }
+
+    /**
+     * Gets a service by id.
+     *
+     * @param  string $id The service id
+     *
+     * @return object The service
+     */
+    public function get($id)
+    {
+        return $this->container->get($id);
+    }
+
+    public function getUser()
+    {
+        return $this->get('security.context')->getToken()->getUser();
+    }
+
+    protected function createPagination($currentPage)
+    {
+        $perPage = $this->container->getParameter('pagination.default_items_per_page');
+        $pagination = new Pagination($perPage);
+        $pagination->setCurrentPage($currentPage);
+        return $pagination;
     }
 }

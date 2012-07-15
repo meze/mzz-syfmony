@@ -25,22 +25,15 @@ class MzzExtension extends Extension
     public function doConfigLoad($config, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        //$loader->load('security.xml');
+        //$loader->load('controller.xml');
+       // $loader->load('jip.xml');
+   //     $loader->load('templating.xml');
+       /* $loader->load('validator.xml');
 
-        if (isset($config['enable_security']) && $config['enable_security']) {
-            $loader->load('security.xml');
-
-            if (!empty($config['authentication']) && !isset($config['class']['user_repository.class'])) {
-                throw new \RuntimeException('You must define your user repository class (user_repository.class). In your project you need to
-                    make a class that implements UserRepository and will be used to retrieve a user from a data source (databases, etc)');
-            }
-        }
-
-        $options = array('controller', 'jip', 'templating', 'validator');
-
-        foreach ($options as $option) {
-            if (isset($config['enable_' . $option]) && $config['enable_' . $option]) {
-                $loader->load($option);
-            }
+        if (!empty($config['authentication']) && !isset($config['class']['user_repository.class'])) {
+            throw new \RuntimeException('You must define your user repository class (user_repository.class). In your project you need to
+                make a class that implements UserRepository and will be used to retrieve a user from a data source (databases, etc)');
         }
 
         if (isset($config['user_controller'])) {
@@ -48,7 +41,7 @@ class MzzExtension extends Extension
                 'user_controller' => 'mzz.authentication.controller.user.class',
             ));
         }
-
+*/
         $namespaces = array(
             'class' => 'mzz.%s'
         );

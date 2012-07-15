@@ -23,9 +23,9 @@ class UserHasRoleSpecificationTest extends \PHPUnit_Framework_TestCase
 
     private function getAuth($authorities)
     {
-        $auth = $this->getMock("Mzz\MzzBundle\Authentication\Authentication", array(), array('user', 'pass', array()));
+        $auth = $this->getMock("FOS\UserBundle\Model\UserInterface", array(), array('user', 'pass', array()));
         $auth->expects($this->any())
-            ->method('getAuthorities')
+            ->method('getRoles')
             ->will($this->returnValue($authorities));
         return $auth;
     }

@@ -18,16 +18,17 @@ class PaginationExtension extends \Twig_Extension
         );
     }
 
-    public function pagination(Pagination $pagination, $template = null)
+    public function pagination(Pagination $pagination, $template = null, $additional_params = array(), $attrs = array())
     {
         if (null === $template) {
             $template = 'MzzBundle:Pagination:_standard.html.twig';
         }
 
         $template = $this->environment->loadTemplate($template);
-
         return $template->render(array(
-            'pagination' => $pagination
+            'pagination' => $pagination,
+            'additional_params' => $additional_params,
+            'attrs' => $attrs
         ));
     }
 

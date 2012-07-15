@@ -4,7 +4,7 @@ namespace Mzz\MzzBundle\Authentication;
 
 use \Mzz\MzzBundle\Acl\CompositeSpecification;
 use \Mzz\MzzBundle\Acl\NotSpecification;
-use Mzz\MzzBundle\Authentication\Authentication;
+use FOS\UserBundle\Model\UserInterface;
 
 class TestAndMockSpecification extends CompositeSpecification
 {
@@ -15,7 +15,7 @@ class TestAndMockSpecification extends CompositeSpecification
         $this->result = (bool)$result;
     }
 
-    public function isSatisfiedBy(Authentication $candidate)
+    public function isSatisfiedBy(UserInterface $candidate)
     {
         return $this->result;
     }
@@ -65,7 +65,7 @@ class AndSpecificationTest extends \PHPUnit_Framework_TestCase
 
     private function mockAuth()
     {
-        return $this->getMock("Mzz\MzzBundle\Authentication\Authentication", array(), array('user', 'pass', array()));
+        return $this->getMock("FOS\UserBundle\Model\UserInterface", array(), array('user', 'pass', array()));
     }
 
 }

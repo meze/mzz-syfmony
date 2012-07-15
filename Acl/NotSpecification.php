@@ -1,7 +1,7 @@
 <?php
 
 namespace Mzz\MzzBundle\Acl;
-use Mzz\MzzBundle\Authentication\Authentication;
+use FOS\UserBundle\Model\UserInterface;
 
 class NotSpecification extends CompositeSpecification
 {
@@ -12,7 +12,7 @@ class NotSpecification extends CompositeSpecification
         $this->innerSpecification = $innerSpecification;
     }
 
-    public function isSatisfiedBy(Authentication $candidate)
+    public function isSatisfiedBy(UserInterface $candidate)
     {
         return !($this->innerSpecification->isSatisfiedBy($candidate));
     }
