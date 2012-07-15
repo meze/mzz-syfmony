@@ -19,6 +19,7 @@
     "require-dev": {
     },
     "autoload": {
+        "psr-0": { "Mzz\\MzzBundle": "" }
     },
     "target-dir": "Mzz/MzzBundle"
 }
